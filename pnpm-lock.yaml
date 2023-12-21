@@ -36,7 +36,7 @@ importers:
         version: link:packages/tsconfig
       tsup:
         specifier: 7.2.0
-        version: 7.2.0(postcss@8.4.31)(typescript@5.1.6)
+        version: 7.2.0
       turbo:
         specifier: 1.10.14
         version: 1.10.14
@@ -361,14 +361,20 @@ importers:
       '@typescript-eslint/utils':
         specifier: 6.11.0
         version: 6.11.0(eslint@8.50.0)(typescript@5.1.6)
+      esquery:
+        specifier: 1.5.0
+        version: 1.5.0
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
       parse-md:
         specifier: 3.0.3
         version: 3.0.3
+      postcss:
+        specifier: 8.4.32
+        version: 8.4.32
       tailwindcss:
-        specifier: ^3.4.0
+        specifier: 3.4.0
         version: 3.4.0
       zod:
         specifier: 3.22.4
@@ -378,16 +384,16 @@ importers:
         specifier: 7.22.5
         version: 7.22.5(@babel/core@7.21.8)
       '@rollup/plugin-commonjs':
-        specifier: ^25.0.7
+        specifier: 25.0.7
         version: 25.0.7(rollup@4.4.1)
       '@types/eslint':
-        specifier: ^8.44.7
+        specifier: 8.44.7
         version: 8.44.7
       '@types/html-to-text':
         specifier: 9.0.1
         version: 9.0.1
       '@types/js-yaml':
-        specifier: ^4.0.9
+        specifier: 4.0.9
         version: 4.0.9
       '@types/pretty':
         specifier: 2.0.1
@@ -398,14 +404,11 @@ importers:
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
-      postcss:
-        specifier: ^8.4.32
-        version: 8.4.32
       rollup:
-        specifier: ^4.4.1
+        specifier: 4.4.1
         version: 4.4.1
       rollup-plugin-esbuild:
-        specifier: ^6.1.0
+        specifier: 6.1.0
         version: 6.1.0(esbuild@0.18.20)(rollup@4.4.1)
       tsconfig:
         specifier: workspace:*
@@ -5919,7 +5922,6 @@ packages:
       lilconfig: 2.1.0
       postcss: 8.4.32
       yaml: 2.3.2
-    dev: false
 
   /postcss-nested@6.0.1(postcss@8.4.31):
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
@@ -6959,6 +6961,41 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+
+  /tsup@7.2.0:
+    resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1
+      postcss: ^8.4.12
+      typescript: '>=4.1.0'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      postcss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      bundle-require: 4.0.2(esbuild@0.18.20)
+      cac: 6.7.14
+      chokidar: 3.5.3
+      debug: 4.3.4
+      esbuild: 0.18.20
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss-load-config: 4.0.1(postcss@8.4.32)
+      resolve-from: 5.0.0
+      rollup: 3.29.4
+      source-map: 0.8.0-beta.0
+      sucrase: 3.34.0
+      tree-kill: 1.2.2
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+    dev: true
 
   /tsup@7.2.0(postcss@8.4.31)(typescript@5.1.6):
     resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
