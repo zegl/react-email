@@ -4,7 +4,7 @@
  *
  * See https://www.caniemail.com/features/css-rgb/
  */
-export const useRgbNonSpacedSyntax = (css: string) => {
+export const forceRgbNonSpacedSyntax = (css: string) => {
   // Thanks tw-to-css!
   // from https://github.com/vinicoder/tw-to-css/blob/main/src/util/format-css.ts
   const regex = /rgb\(\s*(\d+)\s*(\d+)\s*(\d+)(?:\s*\/\s*([\d%.]+))?\s*\)/gm;
