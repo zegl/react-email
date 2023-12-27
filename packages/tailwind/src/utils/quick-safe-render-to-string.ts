@@ -28,10 +28,10 @@ export const quickSafeRenderToString = (element: React.ReactNode): string => {
   }
 
   if (React.isValidElement(element)) {
-    const { type, props } = element;
+    const { type: elementType, props } = element;
 
-    if (typeof type === "function") {
-      const functionComponent = type as React.FC;
+    if (typeof elementType === "function") {
+      const functionComponent = elementType as React.FC;
       // If the element is a component (function component), render it
       const componentRenderingResults = functionComponent(props);
       return quickSafeRenderToString(componentRenderingResults);

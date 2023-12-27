@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderToStaticMarkup as render } from "react-dom/server";
+import React from "react";
 import { Hr } from "@react-email/hr";
 import { Html } from "@react-email/html";
 import { Head } from "@react-email/head";
@@ -40,11 +41,18 @@ describe("Tailwind component", () => {
       return <Tailwind>{props.children}</Tailwind>;
     };
 
+    const MyContext = React.createContext<{ name: string } | undefined>(
+      undefined,
+    );
+
     const Brand = () => {
+      const myContext = React.useContext(MyContext);
+      // currently breaks due to quickSafeRenderToString
+      expect(myContext).toBeDefined();
       return (
         <>
           <div className="p-[20px]">
-            <p className="font-bold text-[50px]">React Email</p>
+            <p className="font-bold text-[50px]">{myContext?.name}</p>
           </div>
           <div className="p-[20px]">
             <p className="font-bold text-[50px]">React Email</p>
@@ -56,8 +64,12 @@ describe("Tailwind component", () => {
     const EmailTemplate = () => {
       return (
         <Wrapper>
-          <div className="text-[50px] leading-[1] mt-[100px]">Hello world</div>
-          <Brand />
+          <MyContext.Provider value={{ name: "my context's name" }}>
+            <div className="text-[50px] leading-[1] mt-[100px]">
+              Hello world
+            </div>
+            <Brand />
+          </MyContext.Provider>
         </Wrapper>
       );
     };
@@ -65,7 +77,7 @@ describe("Tailwind component", () => {
     const actualOutput = render(EmailTemplate());
 
     expect(actualOutput).toMatchInlineSnapshot(
-      `"<div style=\\"font-size:50px;line-height:1;margin-top:100px\\">Hello world</div><div style=\\"padding:20px\\"><p style=\\"font-weight:700;font-size:50px\\">React Email</p></div><div style=\\"padding:20px\\"><p style=\\"font-weight:700;font-size:50px\\">React Email</p></div>"`,
+      `"<div style=\\"font-size:50px;line-height:1;margin-top:100px\\">Hello world</div><div style=\\"padding:20px\\"><p style=\\"font-weight:700;font-size:50px\\">my context&#x27;s name</p></div><div style=\\"padding:20px\\"><p style=\\"font-weight:700;font-size:50px\\">React Email</p></div>"`,
     );
   });
 
