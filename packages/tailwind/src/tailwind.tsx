@@ -11,7 +11,21 @@ import { escapeClassName } from "./utils/escape-class-name";
 import { forceRgbNonSpacedSyntax } from "./utils/force-rgb-non-spaced-syntax";
 import { quickSafeRenderToString } from "./utils/quick-safe-render-to-string";
 
-export type TailwindConfig = Omit<TailwindOriginalConfig, "content">;
+export type TailwindConfig = Pick<
+  TailwindOriginalConfig,
+  | "important"
+  | "prefix"
+  | "separator"
+  | "safelist"
+  | "blocklist"
+  | "presets"
+  | "future"
+  | "experimental"
+  | "darkMode"
+  | "theme"
+  | "corePlugins"
+  | "plugins"
+>;
 
 export interface TailwindProps {
   children: React.ReactNode;
