@@ -91,14 +91,21 @@ function processElement(
 
   // if this is a component, then we render it and recurse it through processElement
   if (typeof modifiedElement.type === "function") {
-    const component = modifiedElement.type as React.FC;
-    const renderedComponent = component(modifiedElement.props);
-    if (React.isValidElement(renderedComponent)) {
-      modifiedElement = processElement(
-        renderedComponent,
-        nonMediaQueryTailwindStylesPerClass,
-      );
-    }
+    const OriginalComponent = modifiedElement.type as React.FC<Record<string, unknown>>;
+    modifiedElement = React.createElement(
+      (props: Record<string, unknown>) => {
+        const renderedComponent = OriginalComponent(props);
+        if (React.isValidElement(renderedComponent)) {
+          return processElement(
+            renderedComponent,
+            nonMediaQueryTailwindStylesPerClass,
+          );
+        }
+        return renderedComponent;
+      },
+      modifiedElement.props,
+      ...(modifiedElement.props.children ? modifiedElement.props.children : []),
+    );
   }
 
   return modifiedElement;
